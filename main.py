@@ -38,7 +38,7 @@ def send_email(msg):
 def list2str(str_list):
     string = ""   
     for elem in str_list:  
-        string += elem + "----------------------------------------------------------"
+        string += elem + "----------------------------------------------------------\n"
     return string
         
 
@@ -86,9 +86,10 @@ for post_url in post_urls:
     uClient = uReq(post_url)
     post_soup = soup(uClient.read(), "html.parser")
     uClient.close()
+    title = post_soup.title.text
     post_containers = post_soup.findAll("div", {"class": "post-content"})
-    print(post_containers[0].text)
-    post_contents.append(post_containers[0].text)
+    print(title + "\n\n" + post_containers[0].text)
+    post_contents.append(title + "\n\n" + post_containers[0].text)
 
 if len(post_contents) > 0:
     msg = list2str(post_contents)
