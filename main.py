@@ -6,6 +6,8 @@ file_urls = []
 for file_url in url_file:
     print(file_url)
     file_urls.append(file_url)
+url_file.close()
+
 print(file_urls[0])
 
 i = 1
@@ -35,8 +37,11 @@ while next:
             next = False
             break
 
+
 if len(post_urls) != 0:
+    url_file = open("last_url.txt", "w")
     url_file.write(post_urls[0])
+    url_file.close()
 
 for post_url in post_urls:
     print(post_url)
